@@ -1,3 +1,5 @@
+import getCoins from './ajaxService.js';
+
 export default function getMoreInfo(e) {
     const id = e.target.parentElement.parentElement.id;
     const url = `https://api.coingecko.com/api/v3/coins/${id}`;

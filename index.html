@@ -33,13 +33,13 @@
         <div class="collapse navbar-collapse" id="navbarColor01">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item active">
-                    <a class="nav-link" href="#">Home<span class="sr-only">(current)</span></a>
+                    <a class="nav-link" id="homeLink" href="#">Home<span class="sr-only">(current)</span></a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Live Reports</a>
+                    <a class="nav-link" id="liveReportsLink" href="#">Live Reports</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">About</a>
+                    <a class="nav-link" id="aboutLink" href="#">About</a>
                 </li>
             </ul>
             <form class="form-inline my-2 my-lg-0">
@@ -48,9 +48,8 @@
             </form>
         </div>
     </nav>
-    <h1 style="text-align: center; margin-top: 20px">Coins</h1>
 
-    <div id="container" style="margin: 0 auto; display: flex; flex-wrap: wrap;"></div>
+    <page></page>
 
     <script src="js/main.js" type="module"></script>
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
