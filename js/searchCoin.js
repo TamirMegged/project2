@@ -1,3 +1,5 @@
+import {activateNavbarLink} from './main.js';
+
 export default function searchCoin() {
     const code = document.querySelector('#searchInput').value.toUpperCase();
     if (code === '') {
@@ -11,29 +13,30 @@ export default function searchCoin() {
 }
 
 
-function hideAllCoinsBut(chosenCoin) {
+export function hideAllCoinsBut(chosenCoin) {
+    let button = false;
     document.querySelectorAll('.card-header').forEach(card => {
         if (card !== chosenCoin) {
-            card.parentElement.style.display = 'none';
+            card.parentElement.style.display = "none";
+            return;
+        } else {
+            activateNavbarLink('home');
+            document.querySelector('#otherPages').innerHTML = "";
+            card.parentElement.style.display = "";
+            button = `<button type="button" class="btn btn-success" id="getAllBtn">Get All Coins</button>`;
         }
     });
-    var button = `<button type="button" class="btn btn-success" id="getAllBtn">Get All Coins</button>`;
-    document.querySelector('body').innerHTML += button;
-    document.querySelector('#getAllBtn').addEventListener('click', showAllCoinsBack);
+    if (button) {
+        document.querySelector('body').innerHTML += button;
+        document.querySelector('#getAllBtn').addEventListener('click', showAllCoinsBack);
+        document.querySelector('#contentHeader').textContent = 'Result';
+    }
 }
 
 
 function showAllCoinsBack() {
     document.querySelectorAll('.card-header').forEach(card => {
-        card.parentElement.style.display = 'flex';
+        card.parentElement.style.display = "";
     });
     document.querySelector('#getAllBtn').remove();
 }
-
-// function searchCoin() {
-//     const code = document.querySelector('#searchInput').value.toLowerCase();
-//     if (code === '') {
-//     }
-//     const url = `https://api.coingecko.com/api/v3/coins/${code}`;
-//     getCoins(url, showCoins);
-// }

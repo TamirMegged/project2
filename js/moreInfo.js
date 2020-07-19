@@ -13,6 +13,6 @@ function showMoreInfo() {
             in EUR: ${info.market_data.current_price.eur}€<br>
             in ILS: ${info.market_data.current_price.ils}₪</div>
             <img src="${info.image.small}" width="50px" style="position: absolute; right: 10px">`;
-    let collapseDiv = document.querySelector(`#info${info.symbol}`);
+    let collapseDiv = document.querySelector(`#info${info.id}`);
     collapseDiv.innerHTML = html;    
 }

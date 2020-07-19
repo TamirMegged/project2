@@ -1,0 +1,37 @@
+#headline {
+    height: 200px;
+    padding: 10px;
+    color: white
+}
+
+#headline > img {
+    position: absolute;
+    right: 10px;
+    top: 10px;
+}
+
+.nav-item {
+    cursor: pointer;
+}
+
+#contentHeader {
+    text-align: center;
+    margin-top: 20px;
+}
+
+#container {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.card-header > p {
+    display: inline;
+    position: absolute;
+    right: 0;
+}
+
+#getAllBtn {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+}

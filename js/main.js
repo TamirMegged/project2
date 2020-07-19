@@ -30,13 +30,15 @@ function showCoins() {
         }
         return createCard(coin, i);
     }).join('');
-    const page = document.querySelector('page');
-    page.innerHTML = `<h1 style="text-align: center; margin-top: 20px">Coins</h1>` + `<div id="container">${html}</div>`;
+    document.querySelector('#contentHeader').textContent = 'All Coins';
+    const container = document.querySelector('#container');
+    container.innerHTML = html;
+    document.querySelector('#otherPages').textContent = '';
     document.querySelectorAll('.moreInfo').forEach(button => button.addEventListener('click', getMoreInfo));
 }
 
 
- export function activateNavbarLink(linkID) {
+export function activateNavbarLink(linkID) {
     let ids = ['about', 'liveReports', 'home'];
     ids.forEach(link => {
         if (link === linkID) {
@@ -44,5 +46,5 @@ function showCoins() {
         } else {
             document.querySelector(`#${link}Link`).parentElement.classList.remove('active');
         }
-    })
+    });
 }
