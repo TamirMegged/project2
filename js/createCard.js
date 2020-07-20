@@ -1,5 +1,5 @@
 export default function createCard(coin, i) {
-    return `<div class="card border-primary mb-3" id=${coin.id} style="width: 22rem; height: 18rem; margin: 10px;">
+    return `<div class="card border-primary mb-3 coinCard" id=${coin.id}>
                 <h4 class="card-header">${coin.symbol.toUpperCase()}<p class="custom-control custom-switch"><input type="checkbox" class="custom-control-input" id="customSwitch${i}"><label class="custom-control-label" for="customSwitch${i}"></label></p></h4>
                 <div class="card-body">
                     <h5 class="card-title">${coin.id}</h5>

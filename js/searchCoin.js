@@ -1,4 +1,4 @@
-import {activateNavbarLink} from './main.js';
+import { activateNavbarLink, addEventListeners } from './main.js';
 
 export default function searchCoin() {
     const code = document.querySelector('#searchInput').value.toUpperCase();
@@ -23,13 +23,16 @@ export function hideAllCoinsBut(chosenCoin) {
             activateNavbarLink('home');
             document.querySelector('#otherPages').innerHTML = "";
             card.parentElement.style.display = "";
-            button = `<button type="button" class="btn btn-success" id="getAllBtn">Get All Coins</button>`;
+            if (!document.querySelector('#getAllBtn')) {
+                button = `<button type="button" class="btn btn-success btn-lg" id="getAllBtn">Get All Coins</button>`;
+            }
         }
     });
     if (button) {
         document.querySelector('body').innerHTML += button;
         document.querySelector('#getAllBtn').addEventListener('click', showAllCoinsBack);
         document.querySelector('#contentHeader').textContent = 'Result';
+        addEventListeners();
     }
 }
 
@@ -39,4 +42,5 @@ function showAllCoinsBack() {
         card.parentElement.style.display = "";
     });
     document.querySelector('#getAllBtn').remove();
+    document.querySelector('#contentHeader').textContent = 'All Coins';
 }

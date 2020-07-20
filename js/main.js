@@ -6,10 +6,13 @@ import goToAbout from './about.js';
 
 
 window.addEventListener('load', getAll);
-document.querySelector('#searchBtn').addEventListener('click', searchCoin);
-document.querySelector('#aboutLink').addEventListener('click', goToAbout);
-document.querySelector('#homeLink').addEventListener('click', getAll);
+addEventListeners();
 
+export function addEventListeners() {
+    document.querySelector('#searchBtn').addEventListener('click', searchCoin);
+    document.querySelector('#aboutLink').addEventListener('click', goToAbout);
+    document.querySelector('#homeLink').addEventListener('click', getAll);
+}
 
 function getAll(event) {
     event.preventDefault();
@@ -47,4 +50,16 @@ export function activateNavbarLink(linkID) {
             document.querySelector(`#${link}Link`).parentElement.classList.remove('active');
         }
     });
+}
+
+
+window.addEventListener('scroll', stickNavbar);
+var sticky = document.querySelector('#navbar').offsetTop;
+
+function stickNavbar() {
+    if (window.pageYOffset >= sticky) {
+        document.querySelector('#navbar').classList.add("sticky");
+    } else {
+        document.querySelector('#navbar').classList.remove("sticky");
+    }
 }

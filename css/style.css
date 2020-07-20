@@ -1,3 +1,4 @@
+/* Headline */
 #headline {
     height: 200px;
     padding: 10px;
@@ -10,10 +11,22 @@
     top: 10px;
 }
 
+.sticky {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 100;
+}
+
+.sticky + #content {
+    padding-top: 70px;
+}
+
 .nav-item {
     cursor: pointer;
 }
 
+/* Coin Cards */
 #contentHeader {
     text-align: center;
     margin-top: 20px;
@@ -22,6 +35,12 @@
 #container {
     display: flex;
     flex-wrap: wrap;
+}
+
+.coinCard {
+    width: 22rem;
+    /* height: 18rem; */
+    margin: 10px;
 }
 
 .card-header > p {
@@ -34,4 +53,10 @@
     position: absolute;
     left: 50%;
     transform: translateX(-50%);
+}
+
+/* About Screen */
+.jumbotron {
+    width: 80%;
+    margin: 0 auto;
 }
