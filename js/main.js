@@ -8,6 +8,21 @@ import goToAbout from './about.js';
 window.addEventListener('load', getAll);
 addEventListeners();
 
+export function makeProgress() {
+    let i = 0;
+    setInterval(() => {
+        if (i <= 100) {
+            document.querySelector('#progressBar').style.width = `${i}%`;
+            i++;
+        } else {
+            i = 1;
+        }
+        if (document.querySelector('#progressModal').style.display === 'none') {
+            return;
+        }
+    }, 50);
+}
+
 export function addEventListeners() {
     document.querySelector('#searchBtn').addEventListener('click', searchCoin);
     document.querySelector('#aboutLink').addEventListener('click', goToAbout);
@@ -17,6 +32,8 @@ export function addEventListeners() {
 function getAll(event) {
     event.preventDefault();
     activateNavbarLink('home');
+    document.querySelector('#progressModal').style.display = "block";
+    makeProgress();
     const url = 'https://api.coingecko.com/api/v3/coins/list';
     getCoins(url, showCoins);
 }
@@ -28,15 +45,16 @@ function showCoins() {
     var html = coins.map(coin => {
         i++;
         //For developement: only first 100 coins
-        if (i > 100) {
-            return;
-        }
+        // if (i > 100) {
+        //     return;
+        // }
         return createCard(coin, i);
     }).join('');
     document.querySelector('#contentHeader').textContent = 'All Coins';
     const container = document.querySelector('#container');
     container.innerHTML = html;
     document.querySelector('#otherPages').textContent = '';
+    document.querySelector('#progressModal').style.display = "none";
     document.querySelectorAll('.moreInfo').forEach(button => button.addEventListener('click', getMoreInfo));
 }
 

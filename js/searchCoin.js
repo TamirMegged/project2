@@ -1,6 +1,8 @@
-import { activateNavbarLink, addEventListeners } from './main.js';
+import { activateNavbarLink, addEventListeners, makeProgress } from './main.js';
 
 export default function searchCoin() {
+    document.querySelector('#progressModal').style.display = "block";
+    makeProgress();
     const code = document.querySelector('#searchInput').value.toUpperCase();
     if (code === '') {
     }
@@ -34,6 +36,7 @@ export function hideAllCoinsBut(chosenCoin) {
         document.querySelector('#contentHeader').textContent = 'Result';
         addEventListeners();
     }
+    document.querySelector('#progressModal').style.display = "none";
 }
 
 

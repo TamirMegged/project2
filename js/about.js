@@ -1,4 +1,4 @@
-import {activateNavbarLink} from './main.js';
+import { activateNavbarLink } from './main.js';
 import { hideAllCoinsBut } from './searchCoin.js';
 
 export default function goToAbout(event) {
