@@ -1,8 +1,7 @@
-import { activateNavbarLink, addEventListeners, makeProgress } from './main.js';
+import { activateNavbarLink, addEventListeners, toggleProgressModal } from './main.js';
 
 export default function searchCoin() {
-    document.querySelector('#progressModal').style.display = "block";
-    makeProgress();
+    toggleProgressModal('block');
     const code = document.querySelector('#searchInput').value.toUpperCase();
     if (code === '') {
     }
@@ -36,14 +35,16 @@ export function hideAllCoinsBut(chosenCoin) {
         document.querySelector('#contentHeader').textContent = 'Result';
         addEventListeners();
     }
-    document.querySelector('#progressModal').style.display = "none";
+    toggleProgressModal('none');
 }
 
 
 function showAllCoinsBack() {
+    toggleProgressModal('block');
     document.querySelectorAll('.card-header').forEach(card => {
         card.parentElement.style.display = "";
     });
     document.querySelector('#getAllBtn').remove();
     document.querySelector('#contentHeader').textContent = 'All Coins';
+    toggleProgressModal('none')
 }
