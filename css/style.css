@@ -83,3 +83,11 @@
     transform: translate(-50%, -50%);
     z-index: 50;
 }
+
+/* More than 5 coins chosen modal */
+#chosenModal {
+    height: 80%;
+    display: flex;
+    flex-wrap: wrap;
+    overflow: auto;
+}

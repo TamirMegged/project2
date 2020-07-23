@@ -1,6 +1,7 @@
 import { activateNavbarLink } from './main.js';
 import { hideAllCoinsBut } from './searchCoin.js';
 
+//About screen - go to about (a id="aboutLink")
 export default function goToAbout(event) {
     event.preventDefault();
     let html = `<div class="jumbotron">
