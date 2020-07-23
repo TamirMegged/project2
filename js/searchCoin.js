@@ -64,5 +64,5 @@ function showAllCoinsBack() {
     });
     document.querySelector('#getAllBtn').remove();
     document.querySelector('#contentHeader').textContent = 'All Coins';
-    toggleProgressModal('none')
+    toggleProgressModal('none');
 }

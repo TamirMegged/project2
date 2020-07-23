@@ -5,8 +5,9 @@ export default function toggleCoin(e) {
     let coinSymbol = card.querySelector('.card-header').textContent;
     let coinId = card.querySelector('.card-title').textContent;
     let chosenCoin = { coinSymbol: coinSymbol, coinId: coinId };
+    let isChecked = e.target.parentElement.querySelector('input').checked;
 
-    if (!e.target.parentElement.querySelector('input').checked) {
+    if (!isChecked) {
         if (chosenCoins.length === 5 && e.target.classList.contains('coinToggle')) {
             document.querySelector('#chosenCoins').innerHTML = "";
             chosenCoins.forEach((coin, index) => {
@@ -26,6 +27,10 @@ export default function toggleCoin(e) {
             }
         });
         localStorage.setItem('chosenCoins', (JSON.stringify(newChosenCoins)));
+    }
+
+    if (e.target.classList.contains('toggleInModal')) {
+        document.querySelector(`#customSwitch${coinId}`).checked = !isChecked;
     }
 }
 
