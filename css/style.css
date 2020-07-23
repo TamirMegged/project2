@@ -11,6 +11,7 @@
     top: 10px;
 }
 
+/* Navbar */
 .sticky {
     position: fixed;
     top: 0;
@@ -27,6 +28,10 @@
 }
 
 /* Coin Cards */
+#content {
+    position: relative;
+}
+
 #contentHeader {
     text-align: center;
     margin-top: 20px;
@@ -66,4 +71,15 @@
     margin: 0 auto;
     width: 80%;
     margin-top: 20px;
+}
+
+/* No code alert */
+#noCode {
+    display: none;
+    width: 20%;
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 50;
 }
