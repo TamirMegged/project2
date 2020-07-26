@@ -15,7 +15,7 @@
 <body class="bg-light">
     <div id="headline" class="bg-secondary">
         <header style="font-size: 5em;">Clover</header>
-        <blockquote class="blockquote text-left">
+        <blockquote class="blockquote text-left" style="color: white;">
             <p class="mb-0">"Anyone who tells you money can't buy hapiness never had any"</p>
             <footer class="blockquote-footer" style="color: black;">Samuel L. Jackson</footer>
         </blockquote>
@@ -75,22 +75,25 @@
         </div>
     </div>
 
-    <div id="chosenLimit" class="modal" style="background-color: rgba(0, 0, 0, 0.5)">
+    <div id="chosenLimit" class="modal fade" style="background-color: rgba(0, 0, 0, 0.5)">
         <div id="chosenModal" class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title">You Have Reached The Limit</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <button type="button" id="xModal" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
                 <div class="modal-body">
-                    <p>You can choose up to 5 different coins. Please remove one of the coins or press cancel.</p>
+                    <p>You can choose up to 5 different coins. Please remove one of the coins or press close.</p>
                     <div id="chosenCoins"></div>
                 </div>
+                <div id="moreThan5" class="alert alert-dismissible alert-danger" style="display: none;">
+                    <strong>More than 5 coins selected! </strong>Please remove at least one coin or press close.
+                </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-primary">Save changes</button>
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" id="saveChanges" class="btn btn-primary">Save changes</button>
+                    <button type="button" id="closeModal" class="btn btn-secondary" data-dismiss="modal">Close</button>
                 </div>
             </div>
         </div>

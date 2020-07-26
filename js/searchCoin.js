@@ -8,6 +8,7 @@ export default function searchCoin() {
     const code = search.toUpperCase();
     if (code === '') {
         toggleProgressModal('none');
+        document.querySelector('#searchInput').focus();
         document.querySelector('#noCode').style.display = 'block';
         setTimeout(() => {
             document.querySelector('#noCode').style.display = 'none';

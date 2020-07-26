@@ -12,7 +12,8 @@ export default function goToAbout(event) {
                         Here, you will find information about all coins, including: coin's name, code, image, value compared to USD, EUR and ILS, and live reports for value changes.<br>
                         I used HTML5, JavaScript and CSS, while the app is written as an SPA (Single Page application).<br>
                         <b>Links to project's code:</b><br>
-                        <a href="https://github.com/TamirMegged/project2.git">Git</a><br>
+                        <a href="https://github.com/TamirMegged/project2.git">GitHub</a><br>
+                        <a href="#">CodeSandbox</a><br>
                         <a href="#">Glitch</a>
                     </p>
                 </div>`;

@@ -2,7 +2,8 @@
 #headline {
     height: 200px;
     padding: 10px;
-    color: white
+    color: white;
+    /* color: #ffd24c; */
 }
 
 #headline > img {
@@ -40,6 +41,7 @@
 #container {
     display: flex;
     flex-wrap: wrap;
+    justify-content: space-around;
 }
 
 .coinCard {
@@ -64,6 +66,13 @@
 .jumbotron {
     width: 80%;
     margin: 0 auto;
+    position: relative;
+}
+
+#aboutImg {
+    position: absolute;
+    top: 20px;
+    right: 100px;
 }
 
 /* In Progress */
@@ -74,7 +83,7 @@
 }
 
 /* No code alert */
-#noCode {
+.alert {
     display: none;
     width: 20%;
     position: fixed;
@@ -82,12 +91,4 @@
     top: 50%;
     transform: translate(-50%, -50%);
     z-index: 50;
-}
-
-/* More than 5 coins chosen modal */
-#chosenModal {
-    height: 80%;
-    display: flex;
-    flex-wrap: wrap;
-    overflow: auto;
 }

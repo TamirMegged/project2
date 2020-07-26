@@ -4,6 +4,7 @@ import searchCoin from './searchCoin.js';
 import getMoreInfo from './moreInfo.js';
 import goToAbout from './about.js';
 import toggleCoin from './toggle.js';
+import goToLiveReports from './liveReports.js';
 
 
 window.addEventListener('load', getAll);
@@ -12,8 +13,15 @@ localStorage.setItem('chosenCoins', '[]');
 
 export function addEventListeners() {
     document.querySelector('#searchBtn').addEventListener('click', searchCoin);
-    document.querySelector('#aboutLink').addEventListener('click', goToAbout);
+    document.querySelector('#searchInput').addEventListener('keypress', e => {
+        if (e.key === 'Enter') {
+            e.preventDefault();
+            searchCoin();
+        }
+    });
     document.querySelector('#homeLink').addEventListener('click', getAll);
+    document.querySelector('#liveReportsLink').addEventListener('click', goToLiveReports);
+    document.querySelector('#aboutLink').addEventListener('click', goToAbout);
     document.querySelectorAll('.moreInfo').forEach(button => button.addEventListener('click', getMoreInfo));
     document.querySelectorAll('.coinToggle').forEach(input => input.addEventListener('click', toggleCoin));
 }

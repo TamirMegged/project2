@@ -1,7 +1,7 @@
 export default function toggleCoin(e) {
     let chosenCoins = JSON.parse(localStorage.getItem('chosenCoins'));
     const card = e.target.parentElement.parentElement.parentElement;
-    
+
     let coinSymbol = card.querySelector('.card-header').textContent;
     let coinId = card.querySelector('.card-title').textContent;
     let chosenCoin = { coinSymbol: coinSymbol, coinId: coinId };
@@ -15,7 +15,12 @@ export default function toggleCoin(e) {
                 document.querySelector('#chosenCoins').innerHTML += html;
             });
             document.querySelector('#chosenLimit').style.display = "block";
+            document.querySelector('#chosenLimit').classList.add('show');
+            document.querySelector('body').classList.add('modal-open');
             document.querySelectorAll('.toggleInModal').forEach(input => input.addEventListener('click', toggleCoin));
+            document.querySelector('#closeModal').addEventListener('click', () => closeModal(coinId));
+            document.querySelector('#xModal').addEventListener('click', () => closeModal(coinId));
+            document.querySelector('#saveChanges').addEventListener('click', saveToggleChanges);
         }
         chosenCoins.push(chosenCoin);
         localStorage.setItem('chosenCoins', (JSON.stringify(chosenCoins)));
@@ -42,4 +47,35 @@ function createChosenCard(card, index) {
                     <h5 class="card-title">${card.coinId}</h5>
                 </div>
             </div>`;
+}
+
+
+function closeModal(coinToRemove) {
+    document.querySelector('#chosenLimit').style.display = 'none';
+    document.querySelector('#chosenLimit').classList.remove('show');
+    document.querySelector('body').classList.remove('modal-open');
+    document.querySelector(`#customSwitch${coinToRemove}`).checked = false;
+    let chosenCoins = JSON.parse(localStorage.getItem('chosenCoins'));
+    let newChosenCoins = [];
+    chosenCoins.forEach(coin => {
+        if (coin.coinId !== coinToRemove) {
+            newChosenCoins.push(coin);
+        }
+    });
+    localStorage.setItem('chosenCoins', (JSON.stringify(newChosenCoins)));
+}
+
+
+function saveToggleChanges() {
+    let chosenCoins = JSON.parse(localStorage.getItem('chosenCoins'));
+    if (chosenCoins.length > 5) {
+        document.querySelector('#moreThan5').style.display = 'block';
+        setTimeout(() => {
+            document.querySelector('#moreThan5').style.display = 'none';
+        }, 3000);
+        return;
+    }
+    document.querySelector('#chosenLimit').style.display = 'none';
+    document.querySelector('#chosenLimit').classList.remove('show');
+    document.querySelector('body').classList.remove('modal-open');
 }
