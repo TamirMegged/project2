@@ -2,9 +2,9 @@ export default function toggleCoin(e) {
     let chosenCoins = JSON.parse(localStorage.getItem('chosenCoins'));
     const card = e.target.parentElement.parentElement.parentElement;
 
-    let coinSymbol = card.querySelector('.card-header').textContent;
-    let coinId = card.querySelector('.card-title').textContent;
-    let chosenCoin = { coinSymbol: coinSymbol, coinId: coinId };
+    let symbol = card.querySelector('.card-header').textContent;
+    let id = card.querySelector('.card-title').textContent;
+    let chosenCoin = { symbol: symbol, id: id };
     let isChecked = e.target.parentElement.querySelector('input').checked;
 
     if (!isChecked) {
@@ -18,8 +18,8 @@ export default function toggleCoin(e) {
             document.querySelector('#chosenLimit').classList.add('show');
             document.querySelector('body').classList.add('modal-open');
             document.querySelectorAll('.toggleInModal').forEach(input => input.addEventListener('click', toggleCoin));
-            document.querySelector('#closeModal').addEventListener('click', () => closeModal(coinId));
-            document.querySelector('#xModal').addEventListener('click', () => closeModal(coinId));
+            document.querySelector('#cancelModal').addEventListener('click', () => { closeModal(id) });
+            document.querySelector('#xModal').addEventListener('click', () => { closeModal(id) });
             document.querySelector('#saveChanges').addEventListener('click', saveToggleChanges);
         }
         chosenCoins.push(chosenCoin);
@@ -27,7 +27,7 @@ export default function toggleCoin(e) {
     } else {
         let newChosenCoins = [];
         chosenCoins.forEach(coin => {
-            if (coin.coinId !== chosenCoin.coinId) {
+            if (coin.id !== chosenCoin.id) {
                 newChosenCoins.push(coin);
             }
         });
@@ -35,16 +35,16 @@ export default function toggleCoin(e) {
     }
 
     if (e.target.classList.contains('toggleInModal')) {
-        document.querySelector(`#customSwitch${coinId}`).checked = !isChecked;
+        document.querySelector(`#customSwitch${id}`).checked = !isChecked;
     }
 }
 
 
 function createChosenCard(card, index) {
     return `<div class="card border-primary mb-3">
-                <h4 class="card-header">${card.coinSymbol}<p class="custom-control custom-switch"><input type="checkbox" class="custom-control-input" id="customSwitch${index}" checked=""><label class="custom-control-label toggleInModal" for="customSwitch${index}"></label></p></h4>
+                <h4 class="card-header">${card.symbol}<p class="custom-control custom-switch"><input type="checkbox" class="custom-control-input" id="customSwitch${index}" checked=""><label class="custom-control-label toggleInModal" for="customSwitch${index}"></label></p></h4>
                 <div class="card-body">
-                    <h5 class="card-title">${card.coinId}</h5>
+                    <h5 class="card-title">${card.id}</h5>
                 </div>
             </div>`;
 }
@@ -58,7 +58,7 @@ function closeModal(coinToRemove) {
     let chosenCoins = JSON.parse(localStorage.getItem('chosenCoins'));
     let newChosenCoins = [];
     chosenCoins.forEach(coin => {
-        if (coin.coinId !== coinToRemove) {
+        if (coin.id !== coinToRemove) {
             newChosenCoins.push(coin);
         }
     });

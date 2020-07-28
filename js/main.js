@@ -1,6 +1,6 @@
 import getCoins from './ajaxService.js';
 import createCard from './createCard.js';
-import searchCoin from './searchCoin.js';
+import searchCoin, {showAllCoinsBack} from './searchCoin.js';
 import getMoreInfo from './moreInfo.js';
 import goToAbout from './about.js';
 import toggleCoin from './toggle.js';
@@ -19,7 +19,7 @@ export function addEventListeners() {
             searchCoin();
         }
     });
-    document.querySelector('#homeLink').addEventListener('click', getAll);
+    document.querySelector('#homeLink').addEventListener('click', showAllCoinsBack);
     document.querySelector('#liveReportsLink').addEventListener('click', goToLiveReports);
     document.querySelector('#aboutLink').addEventListener('click', goToAbout);
     document.querySelectorAll('.moreInfo').forEach(button => button.addEventListener('click', getMoreInfo));

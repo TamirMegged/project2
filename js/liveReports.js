@@ -1,53 +1,57 @@
 import { activateNavbarLink } from './main.js';
 import { hideAllCoinsBut } from './searchCoin.js';
-// import Chartjs from 'https://cdnjs.com/libraries/Chart.js';
+import getData from './ajaxService.js';
 
-//About screen - go to about (a id="aboutLink")
+//Live Reports screen - go to Live Reports (a id="liveReportsLink")
 export default function goToLiveReports(event) {
     event.preventDefault();
-    let html = `<canvas id=chart" width="400" height="400"></canvas>`;
+    let html = `<canvas id="chart" style="width: 400px; height="200px"></canvas>`;
     activateNavbarLink('liveReports');
     document.querySelector('#otherPages').innerHTML = html;
     document.querySelector('#contentHeader').textContent = 'Live Reports';
     hideAllCoinsBut(null);
+    createChart();
 }
 
-// function createChart() {
-//     var ctx = document.querySelector('#chart').getContext('2d');
-//     var myChart = new Chart(ctx, {
-//         type: 'bar',
-//         data: {
-//             labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
-//             datasets: [{
-//                 label: '# of Votes',
-//                 data: [12, 19, 3, 5, 2, 3],
-//                 backgroundColor: [
-//                     'rgba(255, 99, 132, 0.2)',
-//                     'rgba(54, 162, 235, 0.2)',
-//                     'rgba(255, 206, 86, 0.2)',
-//                     'rgba(75, 192, 192, 0.2)',
-//                     'rgba(153, 102, 255, 0.2)',
-//                     'rgba(255, 159, 64, 0.2)'
-//                 ],
-//                 borderColor: [
-//                     'rgba(255, 99, 132, 1)',
-//                     'rgba(54, 162, 235, 1)',
-//                     'rgba(255, 206, 86, 1)',
-//                     'rgba(75, 192, 192, 1)',
-//                     'rgba(153, 102, 255, 1)',
-//                     'rgba(255, 159, 64, 1)'
-//                 ],
-//                 borderWidth: 1
-//             }]
-//         },
-//         options: {
-//             scales: {
-//                 yAxes: [{
-//                     ticks: {
-//                         beginAtZero: true
-//                     }
-//                 }]
-//             }
-//         }
-//     });
-// }
+function createChart() {
+    let chosenCoins = JSON.parse(localStorage.getItem('chosenCoins'));
+    if (chosenCoins.length === 0) {
+        document.querySelector('#otherPages').innerHTML = `<div class="alert alert-dismissible alert-danger" style="display: block; width: 100%; text-align: center">
+        <strong>No coins selected. </strong>Please choose up to 5 coins and come back.
+    </div>`
+        return;
+    }
+    var ctx = document.querySelector('#chart').getContext('2d');
+    new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels: ["January", "February", "March", "April", "May", "June", "July"],
+            datasets: getCoinsValue(chosenCoins)
+        },
+        options: {}
+    });
+}
+
+function getCoinsValue(coins) {
+    const urlCoins = coins.map(coin => {
+        return `${coin.symbol}`;
+    }).join(',');
+    const url = `https://min-api.cryptocompare.com/data/pricemulti?fsyms=${urlCoins}&tsyms=USD`;
+    getData(url, createDataset);
+}
+
+function createDataset() {
+    let coins = JSON.parse(localStorage.getItem('chosenCoins'));
+    const coinsVal = JSON.parse(this.responseText);
+    const colors = ["#2C3E50", "#95a5a6", "#18BC9C", "#ffd24c", "#c78100"];
+    let chartDatasets = coins.map((coin, index) => {
+        return {
+            label: coin.symbol,
+            data: [coinsVal[coin.symbol].USD, coinsVal[coin.symbol].USD,coinsVal[coin.symbol].USD,coinsVal[coin.symbol].USD,coinsVal[coin.symbol].USD,coinsVal[coin.symbol].USD,],
+            fill: false,
+            borderColor: colors[index],
+            lineTension: 0.1
+        }
+    });
+    return chartDatasets;
+}

@@ -85,15 +85,15 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <p>You can choose up to 5 different coins. Please remove one of the coins or press close.</p>
+                    <p>You can choose up to 5 different coins. Please remove one of the coins or press cancel.</p>
                     <div id="chosenCoins"></div>
                 </div>
                 <div id="moreThan5" class="alert alert-dismissible alert-danger" style="display: none;">
-                    <strong>More than 5 coins selected! </strong>Please remove at least one coin or press close.
+                    <strong>More than 5 coins selected! </strong>Please remove at least one coin or press cancel.
                 </div>
                 <div class="modal-footer">
                     <button type="button" id="saveChanges" class="btn btn-primary">Save changes</button>
-                    <button type="button" id="closeModal" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" id="cancelModal" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
                 </div>
             </div>
         </div>
@@ -101,6 +101,7 @@
 
 
     <script src="js/main.js" type="module"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
         integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
         crossorigin="anonymous"></script>

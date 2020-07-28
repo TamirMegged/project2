@@ -58,12 +58,14 @@ export function hideAllCoinsBut(chosenCoin) {
 
 
 //Show back all the coins
-function showAllCoinsBack() {
+export function showAllCoinsBack() {
     toggleProgressModal('block');
     document.querySelectorAll('.card-header').forEach(card => {
         card.parentElement.style.display = "";
     });
-    document.querySelector('#getAllBtn').remove();
+    document.querySelector('#getAllBtn')?.remove();
     document.querySelector('#contentHeader').textContent = 'All Coins';
+    document.querySelector('#otherPages').innerHTML = '';
+    activateNavbarLink('home');
     toggleProgressModal('none');
 }
