@@ -1,3 +1,5 @@
+let beforeModal;
+
 export default function toggleCoin(e) {
     let chosenCoins = JSON.parse(localStorage.getItem('chosenCoins'));
     const card = e.target.parentElement.parentElement.parentElement;
@@ -9,6 +11,7 @@ export default function toggleCoin(e) {
 
     if (!isChecked) {
         if (chosenCoins.length === 5 && e.target.classList.contains('coinToggle')) {
+            beforeModal = chosenCoins;
             document.querySelector('#chosenCoins').innerHTML = "";
             chosenCoins.forEach((coin, index) => {
                 let html = createChosenCard(coin, index);
@@ -18,8 +21,8 @@ export default function toggleCoin(e) {
             document.querySelector('#chosenLimit').classList.add('show');
             document.querySelector('body').classList.add('modal-open');
             document.querySelectorAll('.toggleInModal').forEach(input => input.addEventListener('click', toggleCoin));
-            document.querySelector('#cancelModal').addEventListener('click', () => { closeModal(id) });
-            document.querySelector('#xModal').addEventListener('click', () => { closeModal(id) });
+            document.querySelector('#cancelModal').addEventListener('click', closeModal);
+            document.querySelector('#xModal').addEventListener('click', closeModal);
             document.querySelector('#saveChanges').addEventListener('click', saveToggleChanges);
         }
         chosenCoins.push(chosenCoin);
@@ -44,25 +47,34 @@ function createChosenCard(card, index) {
     return `<div class="card border-primary mb-3">
                 <h4 class="card-header">${card.symbol}<p class="custom-control custom-switch"><input type="checkbox" class="custom-control-input" id="customSwitch${index}" checked=""><label class="custom-control-label toggleInModal" for="customSwitch${index}"></label></p></h4>
                 <div class="card-body">
-                    <h5 class="card-title">${card.id}</h5>
+                    <h5 class="card-title toggle-id">${card.id}</h5>
                 </div>
             </div>`;
 }
 
 
-function closeModal(coinToRemove) {
+function closeModal() {
+    let coinToRemove = beforeModal[5].id;
+    // let chosenCoins = beforeModal;
+    let newChosenCoins = [];
+    document.querySelectorAll('.toggle-id').forEach(card => {
+        document.querySelector(`#customSwitch${card.textContent}`).checked = true;
+        beforeModal.forEach((coin, index) => {
+            if (coin.id === card.textContent && index < 5) {
+                newChosenCoins.push(coin);
+            }
+        });
+    });
+    localStorage.setItem('chosenCoins', (JSON.stringify(newChosenCoins)));
+    // chosenCoins.forEach(coin => {
+    //     if (coin.id !== coinToRemove) {
+    //         newChosenCoins.push(coin);
+    //     }
+    // });
     document.querySelector('#chosenLimit').style.display = 'none';
     document.querySelector('#chosenLimit').classList.remove('show');
     document.querySelector('body').classList.remove('modal-open');
     document.querySelector(`#customSwitch${coinToRemove}`).checked = false;
-    let chosenCoins = JSON.parse(localStorage.getItem('chosenCoins'));
-    let newChosenCoins = [];
-    chosenCoins.forEach(coin => {
-        if (coin.id !== coinToRemove) {
-            newChosenCoins.push(coin);
-        }
-    });
-    localStorage.setItem('chosenCoins', (JSON.stringify(newChosenCoins)));
 }
 
 

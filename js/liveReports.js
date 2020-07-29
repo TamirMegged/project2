@@ -10,11 +10,14 @@ export default function goToLiveReports(event) {
     document.querySelector('#otherPages').innerHTML = html;
     document.querySelector('#contentHeader').textContent = 'Live Reports';
     hideAllCoinsBut(null);
+    getCoinsValue();
     createChart();
 }
 
+let chartDatasets;
+
 function createChart() {
-    let chosenCoins = JSON.parse(localStorage.getItem('chosenCoins'));
+    const chosenCoins = JSON.parse(localStorage.getItem('chosenCoins'));
     if (chosenCoins.length === 0) {
         document.querySelector('#otherPages').innerHTML = `<div class="alert alert-dismissible alert-danger" style="display: block; width: 100%; text-align: center">
         <strong>No coins selected. </strong>Please choose up to 5 coins and come back.
@@ -26,13 +29,14 @@ function createChart() {
         type: 'line',
         data: {
             labels: ["January", "February", "March", "April", "May", "June", "July"],
-            datasets: getCoinsValue(chosenCoins)
+            datasets: chartDatasets
         },
         options: {}
     });
 }
 
-function getCoinsValue(coins) {
+function getCoinsValue() {
+    const coins = JSON.parse(localStorage.getItem('chosenCoins'));
     const urlCoins = coins.map(coin => {
         return `${coin.symbol}`;
     }).join(',');
@@ -41,17 +45,17 @@ function getCoinsValue(coins) {
 }
 
 function createDataset() {
-    let coins = JSON.parse(localStorage.getItem('chosenCoins'));
+    const coins = JSON.parse(localStorage.getItem('chosenCoins'));
     const coinsVal = JSON.parse(this.responseText);
     const colors = ["#2C3E50", "#95a5a6", "#18BC9C", "#ffd24c", "#c78100"];
-    let chartDatasets = coins.map((coin, index) => {
+    chartDatasets = coins.map((coin, index) => {
         return {
             label: coin.symbol,
-            data: [coinsVal[coin.symbol].USD, coinsVal[coin.symbol].USD,coinsVal[coin.symbol].USD,coinsVal[coin.symbol].USD,coinsVal[coin.symbol].USD,coinsVal[coin.symbol].USD,],
+            data: [coinsVal[coin.symbol].USD, coinsVal[coin.symbol].USD, coinsVal[coin.symbol].USD,coinsVal[coin.symbol].USD,coinsVal[coin.symbol].USD,coinsVal[coin.symbol].USD,coinsVal[coin.symbol].USD,],
             fill: false,
             borderColor: colors[index],
             lineTension: 0.1
         }
     });
-    return chartDatasets;
+    // return chartDatasets;
 }
