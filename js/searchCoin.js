@@ -25,6 +25,7 @@ export default function searchCoin() {
         hideAllCoinsBut('notFound');
         document.querySelector('#contentHeader').textContent = `"${search}" Not Found`;
     }
+    toggleProgressModal('none');
 }
 
 
@@ -52,7 +53,6 @@ export function hideAllCoinsBut(chosenCoin) {
             addEventListeners();
         }
     }
-    toggleProgressModal('none');
     return false;
 }
 
