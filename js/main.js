@@ -1,6 +1,6 @@
 import getCoins from './ajaxService.js';
 import createCard from './createCard.js';
-import searchCoin, {showAllCoinsBack} from './searchCoin.js';
+import searchCoin, { showAllCoinsBack } from './searchCoin.js';
 import getMoreInfo from './moreInfo.js';
 import goToAbout from './about.js';
 import toggleCoin from './toggle.js';

@@ -18,7 +18,7 @@ export default function getMoreInfo(e) {
     let collapseDiv = e.target.parentElement.querySelector('.collapse');
     toggleProgressModal('block');
     const id = e.target.parentElement.parentElement.id;
-    if (collapseDiv.classList.contains('show')) {
+    if (!collapseDiv || collapseDiv.classList.contains('show')) {
         toggleProgressModal('none');
         return;
     }
