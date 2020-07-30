@@ -34,7 +34,7 @@ function createDataset() {
     let chartDatasets = coins.map((coin, index) => {
         return {
             label: coin.symbol,
-            data: [coinsVal[coin.symbol].USD, coinsVal[coin.symbol].USD, coinsVal[coin.symbol].USD, coinsVal[coin.symbol].USD, coinsVal[coin.symbol].USD, coinsVal[coin.symbol].USD, coinsVal[coin.symbol].USD,],
+            data: [coinsVal[coin.symbol].USD],
             fill: false,
             borderColor: colors[index],
             lineTension: 0.1
@@ -47,18 +47,22 @@ function createDataset() {
 function updateChart() {
     const coins = JSON.parse(localStorage.getItem('chosenCoins'));
     const coinsVal = JSON.parse(this.responseText);
-    coins.forEach((coin, index) => {
-        chart.data.datasets[index].data.shift();
-        chart.data.datasets[index].data.push(coinsVal[coin.symbol].USD);
+    chart.data.datasets.forEach((dataset, index) => {
+        if (dataset.data.length > 6) {
+            dataset.data.shift();
+        }
+        dataset.data.push(coinsVal[coins[index].symbol].USD);
     });
-    chart.data.labels.shift();
-    chart.data.labels.push(formatTime(new Date()));
+    if (chart.data.labels.length > 6) {
+        chart.data.labels.shift();
+    }
+    chart.data.labels.push(newTime());
     chart.update();
 }
 
 
 function createChart(chartDatasets) {
-    let timeLabels = [formatTime(new Date()), formatTime(new Date()), formatTime(new Date()), formatTime(new Date()), formatTime(new Date()), formatTime(new Date()), formatTime(new Date())];
+    let timeLabels = [newTime()];
     const chosenCoins = JSON.parse(localStorage.getItem('chosenCoins'));
     if (chosenCoins.length === 0) {
         document.querySelector('#otherPages').innerHTML = `<div class="alert alert-dismissible alert-danger" style="display: block; width: 100%; text-align: center">
@@ -89,15 +93,6 @@ function createChart(chartDatasets) {
             responsive: false,
             scales: {
                 xAxes: [{
-                    // type: 'time',
-                    // time: {
-                    //     unit: 'second',
-                    //     unitStepSize: 1,
-                    //     parser: String,
-                    //     displayFormats: {
-                    //         second: 'H:mm:ss'
-                    //     }
-                    // },
                     display: true,
                     scaleLabel: {
                         display: true,
@@ -131,12 +126,6 @@ function createChart(chartDatasets) {
 }
 
 
-function formatTime(date) {
-    let h = date.getHours();
-    let m = date.getMinutes();
-    let s = date.getSeconds();
-    h = h.toString().padStart(2, '0');
-    m = m.toString().padStart(2, '0');
-    s = s.toString().padStart(2, '0');
-    return `${h}:${m}:${s}`;
+function newTime() {
+    return moment().format('HH:mm:ss');
 }
