@@ -30,16 +30,34 @@ let chart;
 function createDataset() {
     const coins = JSON.parse(localStorage.getItem('chosenCoins'));
     const coinsVal = JSON.parse(this.responseText);
-    const colors = ["#2C3E50", "#ffd24c",  "#18BC9C", "#95a5a6", "#c78100"];
+    let noLive = [];
+    let coinVal;
+    const colors = ["#2C3E50", "#ffd24c", "#18BC9C", "#95a5a6", "#c78100"];
     let chartDatasets = coins.map((coin, index) => {
+        if (!coinsVal[coin.symbol]) {
+            coinVal = undefined;
+            noLive.push(coin.symbol);
+        } else {
+            coinVal = coinsVal[coin.symbol].USD;
+        }
         return {
             label: coin.symbol,
-            data: [coinsVal[coin.symbol].USD],
+            data: [coinVal],
             fill: false,
+            backgroundColor: colors[index],
             borderColor: colors[index],
             lineTension: 0.1
         }
     });
+    switch (noLive.length) {
+        case 0:
+            break;
+        case 1:
+            document.querySelector('#contentHeader').innerHTML += `<h5>Coin: <b>${noLive.join(', ')}</b> is not active and therefore has no live reports</h5>`;
+            break;
+        default:
+            document.querySelector('#contentHeader').innerHTML += `<h5>Coins: <b>${noLive.join(', ')}</b> are not active and therefore have no live reports</h5>`
+    }
     createChart(chartDatasets);
 }
 
@@ -47,11 +65,17 @@ function createDataset() {
 function updateChart() {
     const coins = JSON.parse(localStorage.getItem('chosenCoins'));
     const coinsVal = JSON.parse(this.responseText);
+    let coinVal;
     chart.data.datasets.forEach((dataset, index) => {
+        if (!coinsVal[coins[index].symbol]) {
+            coinVal = undefined;
+        } else {
+            coinVal = coinsVal[coins[index].symbol].USD;
+        }
         if (dataset.data.length > 6) {
             dataset.data.shift();
         }
-        dataset.data.push(coinsVal[coins[index].symbol].USD);
+        dataset.data.push(coinVal);
     });
     if (chart.data.labels.length > 6) {
         chart.data.labels.shift();
