@@ -16,6 +16,7 @@ export default function goToLiveReports(event) {
 }
 
 
+// Get coins current value in USD
 function getCoinsValue(cb) {
     const coins = JSON.parse(localStorage.getItem('chosenCoins'));
     const urlCoins = coins.map(coin => {
@@ -25,8 +26,8 @@ function getCoinsValue(cb) {
     getData(url, cb);
 }
 
+// Create dataset for chart containing coins current value
 let chart;
-
 function createDataset() {
     const coins = JSON.parse(localStorage.getItem('chosenCoins'));
     const coinsVal = JSON.parse(this.responseText);
@@ -85,6 +86,7 @@ function updateChart() {
 }
 
 
+// Create chart using cahrtjs
 function createChart(chartDatasets) {
     let timeLabels = [newTime()];
     const chosenCoins = JSON.parse(localStorage.getItem('chosenCoins'));
@@ -150,6 +152,7 @@ function createChart(chartDatasets) {
 }
 
 
+// Format time using momentjs
 function newTime() {
     return moment().format('HH:mm:ss');
 }

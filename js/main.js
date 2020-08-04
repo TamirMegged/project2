@@ -11,6 +11,7 @@ window.addEventListener('load', getAll);
 localStorage.setItem('chosenCoins', '[]');
 
 
+// Event Listeners Manager
 export function addEventListeners() {
     document.querySelector('#searchBtn').addEventListener('click', searchCoin);
     document.querySelector('#searchInput').addEventListener('keypress', e => {
@@ -27,6 +28,7 @@ export function addEventListeners() {
 }
 
 
+// Get all coins on load of page and show them
 function getAll(event) {
     event.preventDefault();
     activateNavbarLink('home');
