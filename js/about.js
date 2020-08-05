@@ -9,11 +9,11 @@ export default function goToAbout(event) {
                     <p class="lead">My name is Tamir Megged, let me tell you some things about this project.</p>
                     <hr class="my-4">
                     <p>In this project you can see a client side application that contains some different API calls.<br>
-                        Here, you will find information about all coins, including: coin's name, code, image, value compared to USD, EUR and ILS, and live reports for value changes.<br>
+                        Here, you will find information about all digital coins, including: coin's name, code, image, value compared to USD, EUR and ILS, and live reports for value changes.<br>
                         I used HTML5, JavaScript and CSS, while the app is written as an SPA (Single Page application).<br>
                         <b>Links to project's code:</b><br>
                         <a href="https://github.com/TamirMegged/project2.git">GitHub</a><br>
-                        <a href="#">CodeSandbox</a><br>
+                        <a href="https://codesandbox.io/s/project2-8mio7">CodeSandbox</a><br>
                         <a href="#">Glitch</a>
                     </p>
                 </div>`;

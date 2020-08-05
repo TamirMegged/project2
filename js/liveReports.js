@@ -59,6 +59,7 @@ function createDataset() {
         default:
             document.querySelector('#contentHeader').innerHTML += `<h5>Coins: <b>${noLive.join(', ')}</b> are not active and therefore have no live reports</h5>`
     }
+    document.querySelector('#contentHeader').innerHTML += "<h6>Click on coin's code to hide or show it</h6"
     createChart(chartDatasets);
 }
 

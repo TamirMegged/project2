@@ -49,10 +49,9 @@ function showCoins() {
         }
         return createCard(coin);
     }).join('');
-    document.querySelector('#contentHeader').textContent = 'All Coins';
+    document.querySelector('#contentHeader').textContent = 'All Digital Coins';
     const container = document.querySelector('#container');
     container.innerHTML = html;
-    document.querySelector('#otherPages').textContent = '';
     toggleProgressModal('none');
     addEventListeners();
 }

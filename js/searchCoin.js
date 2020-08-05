@@ -64,7 +64,7 @@ export function showAllCoinsBack() {
         card.parentElement.style.display = "";
     });
     document.querySelector('#getAllBtn')?.remove();
-    document.querySelector('#contentHeader').textContent = 'All Coins';
+    document.querySelector('#contentHeader').textContent = 'All Digital Coins';
     document.querySelector('#otherPages').innerHTML = '';
     activateNavbarLink('home');
     toggleProgressModal('none');

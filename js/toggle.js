@@ -5,8 +5,9 @@ export default function toggleCoin(e) {
     const card = e.target.parentElement.parentElement.parentElement;
 
     let symbol = card.querySelector('.card-header').textContent;
-    let id = card.querySelector('.card-title').textContent;
-    let chosenCoin = { symbol: symbol, id: id };
+    let name = card.querySelector('.card-title').textContent;
+    let id = card.attributes.coinId.value;
+    let chosenCoin = { symbol, name, id };
     let isChecked = e.target.parentElement.querySelector('input').checked;
 
     if (!isChecked) {
@@ -45,10 +46,10 @@ export default function toggleCoin(e) {
 
 // Create a card for coins in the modal
 function createChosenCard(card, index) {
-    return `<div class="card border-primary mb-3">
+    return `<div class="card border-primary mb-3 modalCard" coinId="${card.id}">
                 <h4 class="card-header">${card.symbol}<p class="custom-control custom-switch"><input type="checkbox" class="custom-control-input" id="customSwitch${index}" checked=""><label class="custom-control-label toggleInModal" for="customSwitch${index}"></label></p></h4>
                 <div class="card-body">
-                    <h5 class="card-title toggle-id">${card.id}</h5>
+                    <h5 class="card-title">${card.name}</h5>
                 </div>
             </div>`;
 }
@@ -57,10 +58,10 @@ function createChosenCard(card, index) {
 function closeModal() {
     let coinToRemove = beforeModal[5].id;
     let newChosenCoins = [];
-    document.querySelectorAll('.toggle-id').forEach(card => {
-        document.querySelector(`#customSwitch${card.textContent}`).checked = true;
+    document.querySelectorAll('.modalCard').forEach(card => {
+        document.querySelector(`#customSwitch${card.attributes.coinId.value}`).checked = true;
         beforeModal.forEach((coin, index) => {
-            if (coin.id === card.textContent && index < 5) {
+            if (coin.id === card.attributes.coinId.value && index < 5) {
                 newChosenCoins.push(coin);
             }
         });
