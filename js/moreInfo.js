@@ -5,9 +5,10 @@ class CoinInfo {
     constructor(coin) {
         this.id = coin.id;
         this.image = coin.image.small;
-        this.usdPrice = coin.market_data.current_price.usd;
-        this.eurPrice = coin.market_data.current_price.eur;
-        this.ilsPrice = coin.market_data.current_price.ils;
+        const currentPrice = coin.market_data.current_price;
+        this.eurPrice = currentPrice.eur ? currentPrice.eur : "Unknown value in ";
+        this.ilsPrice = currentPrice.ils ? currentPrice.ils : "Unknown value in ";
+        this.usdPrice = currentPrice.usd ? currentPrice.usd : "Unknown value in ";
         this.time = new Date();
     }
 }

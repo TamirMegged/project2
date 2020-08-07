@@ -7,6 +7,7 @@ export default function goToAbout(event) {
     let html = `<div class="jumbotron">
                     <h1 class="display-3">About</h1>
                     <p class="lead">My name is Tamir Megged, let me tell you some things about this project.</p>
+                    <img src="../images/worldDigitalCoin.png" width="150px" style="position: absolute; right: 50px; top: 50px">
                     <hr class="my-4">
                     <p>In this project you can see a client side application that contains some different API calls.<br>
                         Here, you will find information about all digital coins, including: coin's name, code, image, value compared to USD, EUR and ILS, and live reports for value changes.<br>
