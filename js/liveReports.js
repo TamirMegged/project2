@@ -59,7 +59,6 @@ function createDataset() {
         default:
             document.querySelector('#contentHeader').innerHTML += `<h5>Coins: <b>${noLive.join(', ')}</b> are not active and therefore have no live reports</h5>`
     }
-    document.querySelector('#contentHeader').innerHTML += "<h6>Click on coin's code to hide or show it</h6"
     createChart(chartDatasets);
 }
 
@@ -98,7 +97,7 @@ function createChart(chartDatasets) {
         toggleProgressModal('none');
         return;
     }
-    var ctx = document.querySelector('#chart').getContext('2d');
+    let ctx = document.querySelector('#chart').getContext('2d');
     chart = new Chart(ctx, {
         type: 'line',
         data: {
@@ -143,6 +142,7 @@ function createChart(chartDatasets) {
             }
         }
     });
+    document.querySelector('#contentHeader').innerHTML += "<h6>Click on coin's code to hide or show it's value.</h6"
     toggleProgressModal('none');
     let update = setInterval(() => {
         if (!document.querySelector('#liveReportsLink').parentElement.classList.contains('active')) {

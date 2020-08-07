@@ -39,7 +39,7 @@
 }
 
 #container {
-    width: 84rem;
+    width: 92vw;
     margin: 0 auto;
     display: flex;
     flex-wrap: wrap;
@@ -47,9 +47,9 @@
 }
 
 .coinCard {
-    width: 20rem;
-    /* width: 22rem; */
-    /* height: 18rem; */
+    /* width: 20vw; */
+    width: 22vw;
+    /* height: 18vw; */
 }
 
 .card-header > p {

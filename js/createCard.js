@@ -1,7 +1,7 @@
 //Create a coin card
 export default function createCard(coin) {
     return `<div class="card border-primary mb-3 coinCard" id="${coin.id}" coinId="${coin.id}">
-                <h4 class="card-header">${coin.symbol.toUpperCase()}<p class="custom-control custom-switch"><input type="checkbox" class="custom-control-input" id="customSwitch${coin.id}"><label class="custom-control-label coinToggle" for="customSwitch${coin.id}"></label></p></h4>
+                <h4 class="card-header">${coin.symbol.toUpperCase()}<p class="custom-control custom-switch"><input type="checkbox" class="custom-control-input" id="customSwitch${coin.id}"><label class="custom-control-label coinToggle" for="customSwitch${coin.id}" title="Add to live reports list"></label></p></h4>
                 <div class="card-body">
                     <h5 class="card-title">${coin.name}</h5>
                     <button class="btn btn-info moreInfo" type="button" data-toggle="collapse" data-target="#collapse${coin.id}" aria-expanded="false" aria-controls="collapseExample">

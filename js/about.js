@@ -14,7 +14,7 @@ export default function goToAbout(event) {
                         <b>Links to project's code:</b><br>
                         <a href="https://github.com/TamirMegged/project2.git">GitHub</a><br>
                         <a href="https://codesandbox.io/s/project2-8mio7">CodeSandbox</a><br>
-                        <a href="#">Glitch</a>
+                        <a href="https://glitch.com/edit/#!/tamir-megged-project2?path=js%2FajaxService.js%3A1%3A0">Glitch</a>
                     </p>
                 </div>`;
     activateNavbarLink('about');
